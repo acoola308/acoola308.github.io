@@ -3,7 +3,8 @@
 ![image](https://github.com/user-attachments/assets/bab47d0d-d5b5-476c-88d7-c679c68ca838)
 ![image](https://github.com/user-attachments/assets/2ace5e93-2c99-40bc-8529-32ccd3bf05e3)
 
-# Код HTML: 
+# Код HTML:
+```HTML
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +58,7 @@
     </script>  
 </body>
 </html>
-
+```
 # Код CSS: 
 @media (prefers-color-scheme: light) {
     .my-btn {
