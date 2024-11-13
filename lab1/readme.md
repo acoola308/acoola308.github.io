@@ -6,12 +6,10 @@
 # Код HTML: 
 <!DOCTYPE html>
 <html>
-
 <head>
   <title>Калькулятор</title>
   <link rel="stylesheet" href="stylecalc.css">
 </head>
-
 <body>
     <button class="knopka" onclick="showblock()">Показать/спрятать</button>
     <div id="calculator">
