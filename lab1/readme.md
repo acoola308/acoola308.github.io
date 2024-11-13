@@ -59,7 +59,8 @@
 </body>
 </html>
 ```
-# Код CSS: 
+# Код CSS:
+```CSS
 @media (prefers-color-scheme: light) {
     .my-btn {
         background: #d0d0d0;
@@ -299,3 +300,4 @@ body {
 .rel {
     position: relative;
 }
+```
