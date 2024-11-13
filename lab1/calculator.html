@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Калькулятор</title>
+  <link rel="stylesheet" href="stylecalc.css">
+</head>
+
+<body>
+    <button class="knopka" onclick="showblock()">Показать/спрятать</button>
+    <div id="calculator">
+        <div id="result" class="result">0</div> 
+        <div id="btn_op_clear" class="my-btn secondary">C</div>
+        <div id="btn_op_sign" class="my-btn secondary">+/-</div>
+        <div id="btn_op_percent" class="my-btn secondary">%</div>
+        <div id="btn_op_div" class="my-btn primary">/</div>
+        <div id="btn_digit_7" class="my-btn">7</div>
+        <div  id="btn_digit_8" class="my-btn">8</div>
+        <div  id="btn_digit_9" class="my-btn">9</div>
+        <div  id="btn_op_mult" class="my-btn primary">x</div>
+        <div  id="btn_digit_4" class="my-btn">4</div>
+        <div  id="btn_digit_5" class="my-btn">5</div>
+        <div  id="btn_digit_6" class="my-btn">6</div>
+        <div  id="btn_op_minus" class="my-btn primary">-</div>
+        <div  id="btn_digit_1" class="my-btn">1</div>
+        <div  id="btn_digit_2" class="my-btn">2</div>
+        <div  id="btn_digit_3" class="my-btn">3</div>
+        <div  id="btn_op_plus" class="my-btn primary">+</div>
+        <div  id="btn_digit_0" class="my-btn">0</div>
+        <div  id="btn_digit_dot" class="my-btn">.</div>
+        <div  id="btn_op_equal" class="my-btn primary execute">=</div>
+    </div>
+    <div id="info" style="display: none;">
+        <h2 class="my">ЛР выполнена Акуловым Антоном Дмитриевичом</h2>
+        <div class="mycenter">
+            <button class="my btn" onclick="window.open('https://github.com/acoola308', '_blank');">Мой GitHub</button>
+        </div>
+        <p>
+            Цель данной лабораторной работы - <mark>знакомство</mark> с инструментами построения пользовательских интерфейсов web-сайтов:
+            <mark>HTML</mark>, <mark>CSS</mark>.
+        </p>
+        <details>
+            <summary class="my">Автор</summary>
+            <p>ФИО: Акулов Антон Дмитриевич
+            Группа: ИС-22</p>
+        </details>
+    </div>
+
+    <script>
+        function showblock() {
+            const block = document.getElementById("info");
+            block.style.display = block.style.display === "none" ? "block" : "none";
+        }
+    </script>
+    
+</body>
+</html>
