@@ -40,7 +40,8 @@ window.onload = function(){
 
     function onDigitButtonClicked(digit) {
         if (!selectedOperation) {
-            if ( a === '' && (digit === '0' || digit === '000' || digit == '.')) return
+            if (a === '' && (digit === '0' || digit === '000' || digit == '.')) return
+            if (a === '-'  && (digit === '0' || digit === '000' || digit == '.')) return
             if ((digit != '.') || (digit == '.' && !a.includes(digit))) { 
                 a += digit  
             }
@@ -67,7 +68,7 @@ window.onload = function(){
 
 
     document.getElementById("btn_op_mult").onclick = function() { 
-        if (a === '' || selectedOperation) return
+        if (a === '' || selectedOperation||  a === '-') return
         selectedOperation = 'x'
         outputElement.innerHTML = a + selectedOperation
         limitOutputLength();
@@ -312,6 +313,7 @@ window.onload = function(){
         limitOutputLength();
     }  
 };
+
 
 
 
