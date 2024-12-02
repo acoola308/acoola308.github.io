@@ -34,3 +34,34 @@ cоздать двухстраничное приложение из приме�
 </body>
 </html>
 ```
+## style.css
+```CSS
+main {
+    display: grid;
+    place-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.h {
+    font-family: 'Arial', sans-serif;
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.mybt {
+    margin-top: 15px;
+}
+
+
+.accordion-body {
+    display: grid;
+    place-items: center;
+}
+
+.img-fluid {
+    height: 300px;
+    width: 250px;
+}
+```
