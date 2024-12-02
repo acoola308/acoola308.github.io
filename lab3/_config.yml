@@ -1,8 +1,0 @@
-title: My Jekyll Site
-description: > 
-  This is my awesome Jekyll site.
-baseurl: "" 
-url: "https://acoola308.github.io" 
-
-exclude:
-  - node_modules
