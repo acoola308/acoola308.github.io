@@ -9,7 +9,7 @@ cоздать двухстраничное приложение из приме�
 1. тема - собаки, компонент - [аккордеон](https://bootstrap-4.ru/docs/5.2/components/accordion/).
 
 # дополнительное задание:
-изучить фреймворк Tailwind CSS и на его основе сверстать карточки подробной информации о породах (собачье страницы)
+изучить фреймворк Tailwind CSS и на его основе сверстать карточки подробной информации о породах (собачьи страницы)
 
 # код лабараторной работы:
 ## index.html
@@ -75,3 +75,215 @@ const root = document.getElementById('root');
 const mainPage = new MainPage(root)
 mainPage.render(1);
 ```
+## ./pages/main/index.js
+```JavaScript
+import {AccordionComponent} from "../../components/accordion/index.js"
+import { IngoDogPage } from "../Infodog/index.js";
+
+export class MainPage {
+    constructor(parent) {
+        this.parent = parent;
+    }
+    
+    getHTML() {
+        return (
+            `
+                <div class="accordion" id="accordionExample" style="width: 450px;"></div>
+            `
+        )
+    }
+
+    get pageRoot() {
+        return document.getElementById('accordionExample')
+    }
+
+    getData() {
+        return [ 
+            {
+                id: 1,
+                name: "Овчарка",
+                src: "././src/img/scale_1200.png",
+                info: "Овчарка – это группа пород собак, известных своим интеллектом, верностью и универсальностью. Они активно используются как служебные, пастушьи и семейные собаки.",
+                pos: "One",
+                show: "",
+                collapse: ""
+            },
+            {
+                id: 2,
+                name: "Лабрадор Ретривер",
+                src: "././src/img/Dogs_Bokeh_Labrador_Retriever_Sitting_586668_640x960.jpg",
+                info: "Лабрадор ретривер — это одна из самых популярных пород в мире благодаря своему дружелюбному и уравновешенному характеру. Они умные, легко обучаемые и подходят для работы в роли служебных собак, а также как семейные питомцы.",
+                pos: "Two",
+                show: "",
+                collapse: ""
+            },
+            {
+                id: 3,
+                name: "Бульдог",
+                src: "././src/img/0c07cce61e4c5b82d6af47c6ec4c5437.webp",
+                info: "Бульдог — компактная и мощная порода, известная своей характерной внешностью с морщинами и крепким телосложением. Они спокойные, лояльные и привязаны к своим владельцам. Бульдоги идеальны для людей, которые ищут спокойного компаньона с минимальными потребностями в физических нагрузках.",
+                pos: "Three",
+                show: "",
+                collapse: ""
+            },
+        ]
+    }
+    
+    clickCard(e) {
+        const button = e.target;
+        const cardId = button.dataset.id;
+        const cardName = button.dataset.name;
+        const cardSrc = button.dataset.src;
+        const cardInfo = button.dataset.info
+        const infodogpage = new IngoDogPage(this.parent, cardId, cardSrc, cardName, cardInfo)
+        infodogpage.render()
+    }
+
+    render(id) {
+        this.parent.innerHTML = ''
+        const html = this.getHTML()
+        this.parent.insertAdjacentHTML('beforeend', html)
+
+        const data = this.getData()
+        data.forEach((item) => {
+            if (id == item.id) {
+                item.show = " show";
+                item.collapse = "";
+            }
+
+            else {
+                item.show = "";
+                item.collapse = " collapsed";
+            }
+            const accordion = new AccordionComponent(this.pageRoot)
+            accordion.render(item, this.clickCard.bind(this)); 
+        })
+    }
+}
+```
+## ./pages/infodog/index.js
+```JavaScript
+import { InfoDogComponent } from "../../components/infodog/index.js"
+import { MainPage } from "../main/index.js"
+import { BackButtonComponent } from "../../components/back-button/index.js"
+
+export class IngoDogPage {
+    constructor(parent, id, src, name, info) {
+        this.parent = parent
+        this.id = id
+        this.name = name
+        this.info = info
+        this.src = src
+    }
+
+    getData() {
+        return {
+            id: 1,
+            src: this.src,
+            title: this.name,
+            text: this.info
+        }
+    }
+
+    get pageRoot() {
+        return document.getElementById('infodog-page')
+    }
+
+    getHTML() {
+        return (
+            `
+                <div id="infodog-page" class="tw-mx-auto tw-my-auto tw-w-[540px]"></div>
+            `
+        )
+    }
+
+    clickBack() {
+        const mainPage = new MainPage(this.parent)
+        mainPage.render(this.id)
+    }
+
+    render() {
+        this.parent.innerHTML = ''
+        const html = this.getHTML()
+        this.parent.insertAdjacentHTML('beforeend', html)
+
+        const data = this.getData()
+        const infodog = new InfoDogComponent(this.pageRoot)
+        infodog.render(data)
+
+        const backButton = new BackButtonComponent(this.pageRoot)
+        backButton.render(this.clickBack.bind(this))
+    }
+}
+```
+## ./components/accordion/index.js
+```JavaScript
+export class AccordionComponent {
+    constructor(parent) {
+        this.parent = parent;
+    }
+
+    getHTML(data) {
+        return (
+            `  
+              <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading${data.pos}">
+                    <button class="accordion-button${data.collapse}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${data.pos}" aria-expanded="true" aria-controls="collapse${data.pos}">
+                        ${data.name}
+                    </button>
+                    </h2>
+                    <div id="collapse${data.pos}" class="accordion-collapse collapse${data.show}" aria-labelledby="heading${data.pos}" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="h"><strong>${data.name}</strong></div>
+                            <img src="${data.src}" class="img-fluid" alt="...">
+                            <button type="button" class="btn btn-primary mybt" id="click-card-${data.id}" data-id="${data.id}" data-src="${data.src}" data-name="${data.name}" data-info="${data.info}">Подробнее о породе</button>
+                        </div>
+                    </div>
+                </div> 
+            `
+        )
+    }
+
+    addListeners(data, listener) {
+        document
+            .getElementById(`click-card-${data.id}`)
+            .addEventListener("click", listener)
+    }
+
+    render(data, listener) {
+        const html = this.getHTML(data)
+        this.parent.insertAdjacentHTML('beforeend', html)
+        this.addListeners(data, listener)
+    }
+}
+```
+## ./components/back-button/index.js
+```JavaScript
+export class BackButtonComponent {
+    constructor(parent) {
+        this.parent = parent;
+    }
+
+    addListeners(listener) {
+        document
+            .getElementById("back-button")
+            .addEventListener("click", listener)
+    }
+
+    getHTML() {
+        return (
+            `
+                <button id="back-button" class="btn btn-primary" type="button">Назад</button>
+            `
+        )
+    }
+
+    render(listener) {
+        const html = this.getHTML()
+        this.parent.insertAdjacentHTML('beforeend', html)
+        this.addListeners(listener)
+    }
+}
+```
+## ./components/back-button/index.js
+```JavaScript
