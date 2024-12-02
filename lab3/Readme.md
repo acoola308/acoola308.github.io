@@ -10,3 +10,27 @@ cоздать двухстраничное приложение из приме�
 
 # дополнительное задание:
 изучить фреймворк Tailwind CSS и на его основе сверстать карточки подробной информации о породах (собачье страницы)
+
+#код лабараторной работы:
+## index.html:
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple App</title>
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="./src/output.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <main>
+        <div class="root" id="root"></div>
+    </main>
+    <script src="main.js" type="module"></script>
+
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+</html>
+```
