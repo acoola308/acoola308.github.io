@@ -270,7 +270,7 @@ body {
 # код javascript: 
 ```JavaScript
 window.onload = function(){ 
-    let a = ''
+    let a = '0'
     let b = ''
     let expressionResult = ''
     let selectedOperation = null
@@ -311,15 +311,19 @@ window.onload = function(){
 
     function onDigitButtonClicked(digit) {
         if (!selectedOperation) {
-            if ( a === '' && (digit === '0' || digit === '000' || digit == '.')) return
+            if (a === '' && (digit === '000' || digit == '.') || a === '0' && (digit === '0' || digit === '000')) return
+            if (a === '-'  && (digit === '0' || digit === '000' || digit == '.')) return
             if ((digit != '.') || (digit == '.' && !a.includes(digit))) { 
-                a += digit  
+                if (a === '0' && digit !== '.')
+                    a = digit;
+                else 
+                    a += digit  
             }
             outputElement.innerHTML = a
             limitOutputLength();
 
         } else {
-            if ( b === '' && (digit === '0' || digit === '000' || digit == '.')) return
+            if ( b === '' && (digit === '000' || digit == '.') || b === '0' && (digit === '0' || digit === '000')) return
             if ((digit != '.') || (digit == '.' && !b.includes(digit))) { 
                 b += digit
                 outputElement.innerHTML = a + selectedOperation + b
@@ -338,7 +342,7 @@ window.onload = function(){
 
 
     document.getElementById("btn_op_mult").onclick = function() { 
-        if (a === '' || selectedOperation) return
+        if (a === '' || selectedOperation||  a === '-') return
         selectedOperation = 'x'
         outputElement.innerHTML = a + selectedOperation
         limitOutputLength();
@@ -395,7 +399,7 @@ window.onload = function(){
 
   
     document.getElementById("btn_op_clear").onclick = function() { 
-        a = ''
+        a = '0'
         b = ''
         selectedOperation = ''
         expressionResult = ''
@@ -572,8 +576,8 @@ window.onload = function(){
                 break;
         }
         
-        if (expressionResult == 0)
-             a = ''
+        if (expressionResult == 0 || expressionResult == "Infinity")
+             a = '0'
         else
             a = expressionResult.toString()
         b = ''
