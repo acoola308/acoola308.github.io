@@ -1,6 +1,6 @@
-![image](./src/1.png)
-![image](./src/2.png)
-![image](./src/3.png)
+![image](./img/1.png)
+![image](./img/2.png)
+![image](./img/3.png)
 
 # основное задание:
 1. запрограммируйте операцию смены знака +/-;  
