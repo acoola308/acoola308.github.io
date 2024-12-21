@@ -9,10 +9,10 @@
 
 главная страница - [groups.getMembers](https://dev.vk.com/ru/method/groups.getMembers). получаем список пользователей группы и отображаем их. необходимо сделать компонент для фильтра sort (см. groups.getMembers -> Параметры -> sort).
 
-Вторая страница - [users.get](https://dev.vk.com/ru/method/users.get). Отображаем выбранного пользователя на первой странице.
+вторая страница - [users.get](https://dev.vk.com/ru/method/users.get). отображаем выбранного пользователя на первой странице.
 
 # дополнительное задание:
-Переписать все XHR-запросы на axios
+переписать все XHR-запросы на axios
 
 # код лабараторной работы:
 ## index.html
