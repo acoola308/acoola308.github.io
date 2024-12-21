@@ -239,3 +239,165 @@ export const groupId = 228518300
 export const accessToken = 'vk1.a.6a3NyZ_PNxNBo2AHx-swKGifSIT8ei24_9MDryRptaob6PdRQZJNf5pJunbzyNTmP4PVQJ7AEhDjN5ObrKsmRK14t07eJhq2aXC2fEfzWWfhm0kHln7C14CSNtE3e0JcO3KcE_ROuHCPN7ygq4ZYLLqFNHxCkarrgF5APNhW1wb75pPByXEufXMwqvrIMUQM02jchZ4wWogAaVHD9_JnKw'
 export const version = '5.199'
 ```
+## ./components/back-button/index.js
+```JavaScript
+export class BackButtonComponent {
+    constructor(parent) {
+        this.parent = parent;
+    }
+
+    addListeners(listener) {
+        document
+            .getElementById("back-button")
+            .addEventListener("click", listener)
+    }
+
+    getHTML() {
+        return (
+            `
+                <button id="back-button" class="btn btn-primary" type="button">Назад</button>
+            `
+        )
+    }
+
+    render(listener) {
+        const html = this.getHTML()
+        this.parent.insertAdjacentHTML('beforeend', html)
+        this.addListeners(listener)
+    }
+}
+```
+## ./components/button-info/index.js
+```JavaScript
+import { MainPage } from "../../pages/main/index.js";
+
+export class ButtonInfo {
+    constructor(parent, id) {
+        this.parent = parent;
+        this.id = id
+    }
+
+    addListeners() {
+        document.querySelectorAll(".myb").forEach((button) => {
+                button.addEventListener("click", () => {
+                    const mainPage = new MainPage(document.getElementById('root'), button.id)
+                    mainPage.render();
+                })
+            })
+    }
+
+    getHTML() {
+        return (
+            `
+                <button id="1" data_id="1" class="btn btn-primary myb" type="button">По id (возрастание)</button>
+                <button id="2" data_id="2" class="btn btn-primary myb" type="button">По id (убывание)</button>
+                <button id="3" data_id="3" class="btn btn-primary myb" type="button">По вступлению</button>
+                <button id="4" data_id="4" class="btn btn-primary myb" type="button">По вступлению (наоборот)</button>
+            `
+        )
+    }
+
+    render() {
+        const html = this.getHTML()
+        this.parent.insertAdjacentHTML('beforeend', html)
+        this.addListeners()
+        const new_color = document.getElementById(this.id)
+        new_color.style.backgroundColor = 'red';
+        new_color.style.borderColor = 'red';
+
+    }
+}
+```
+## ./components/product/index.js
+```JavaScript
+export class ProductComponent {
+    constructor(parent) {
+        this.parent = parent
+    }
+
+    getHTML(data) {
+        return (
+            `
+                <div class="card mb-3" style="width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="${data.photo_400_orig}" class="img-fluid" alt="картинка">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body" id="infopole">
+                                <h5 class="card-title">${data.first_name} ${data.last_name}</h5>
+                                <p>Id - ${data.id}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `
+        )
+    }
+
+    online(data) {
+        if (data === 0) {
+            return `<p>Не в сети</p>`
+        }
+
+        else {
+            return `<p style="color: green;">В сети</p>`
+        }
+    }
+
+    lastseen(data) {
+        const date = new Date(data * 1000);
+        return `<span style="color: gray;">Последний раз был(а) ${date.toLocaleString()}</span>`
+    }
+
+    render(data) {
+        const html = this.getHTML(data)
+        this.parent.insertAdjacentHTML('beforeend', html)
+        
+        const html_2 = this.online(data.online)
+        const new_data = document.getElementById("infopole")
+        new_data.insertAdjacentHTML('beforeend', html_2)
+        
+        if (data.online === 0) {
+            const html_3 = this.lastseen(data.last_seen.time)
+            new_data.insertAdjacentHTML('beforeend', html_3)
+        }
+    }
+}
+```
+## ./components/product-card/index.js
+```JavaScript
+export class ProductCardComponent {
+    constructor(parent) {
+        this.parent = parent;
+    }
+
+    getHTML(data) {
+        return (
+            `
+                <div class="card" style="width: 300px;">
+                    <img class="card-img-top" src="${data.photo_400_orig}" alt="картинка">
+                    <div class="card-body center">
+                        <h5 class="card-title">${data.first_name} ${data.last_name}</h5>
+                        <p>Id - ${data.id}</p>
+                        <button class="btn btn-primary" id="click-card-${data.id}" data-id="${data.id}">Нажми на меня</button>
+                    </div>
+                </div>
+            `
+        )
+    }
+
+    addListeners(data, listener) {
+        document
+            .getElementById(`click-card-${data.id}`)
+            .addEventListener("click", listener)
+    }
+    
+
+    render(data, listener) {
+        const html = this.getHTML(data)
+        this.parent.insertAdjacentHTML('beforeend', html)
+        this.addListeners(data, listener)
+    }
+}
+```
