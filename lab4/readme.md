@@ -13,3 +13,47 @@
 
 # дополнительное задание:
 Переписать все XHR-запросы на axios
+
+# код лабараторной работы:
+## index.html
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple App</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        .center {
+            display: grid;
+            place-items: center;
+            margin-top: 10px;
+        }
+
+        .d-flex {
+            gap: 10px;
+        }
+        #root {
+            padding: 10px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script src="main.js" type="module"></script>
+
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+```
+## main.js
+```JavaScript
+import {MainPage} from "./pages/main/index.js";
+
+
+const root = document.getElementById('root');
+
+const mainPage = new MainPage(root, 3)
+mainPage.render();
+```
