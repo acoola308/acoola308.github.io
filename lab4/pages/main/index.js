@@ -31,8 +31,6 @@ export class MainPage {
     }
 
     renderData(items) {
-        const buttoninfo = new ButtonInfo(document.getElementById("buttons"), this.flag) 
-        buttoninfo.render()
         items.forEach((item) => {
             const productCard = new ProductCardComponent(this.pageRoot)
             productCard.render(item, this.clickCard.bind(this))
@@ -49,6 +47,8 @@ export class MainPage {
         this.parent.innerHTML = ''
         const html = this.getHTML()
         this.parent.insertAdjacentHTML('beforeend', '<div id="buttons" style="margin-bottom: 10px;"></div>')
+        const buttoninfo = new ButtonInfo(document.getElementById("buttons"), this.flag) 
+        buttoninfo.render()
         this.parent.insertAdjacentHTML('beforeend', html)
         this.getData()
     }
