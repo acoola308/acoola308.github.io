@@ -1,0 +1,205 @@
+@media (prefers-color-scheme: light) {
+    .my-btn {
+        background: #d0d0d0;
+        color:  #0a0a23;
+    }
+
+    .my-btn.secondary {
+        background: rgb(118, 118, 118);
+        color: white;
+    }
+
+    .my-btn:hover {
+        background: #b0b0b0;
+    }
+
+    .my-btn.primary:hover {
+        background: #e0e0e0; 
+    }
+    
+    .my-btn.secondary:hover {
+        background:  #383838; 
+    }
+
+    .result {
+        background: #f2f2f2;
+        color: #0a0a23;
+    }
+
+    #calculator {
+        background: #e0e0e0;
+    }
+
+    #info {
+        color: #0a0a23;
+        border: 1px solid #aaa;
+        background-color: #e0e0e0;
+    }
+
+    .btn {
+        background: #d3d3d3;
+        color: #0a0a23;
+        border: 1px solid #888;
+    }
+
+    .knopka {
+        background: #d0d0d0;
+        color: #0a0a23;
+        border: 2px solid #888;
+    }
+
+    .btn:hover {
+        background: #b0b0b0;
+    }
+
+    .knopka:hover {
+        background: #b0b0b0;
+    }
+    
+    .knopka:active {
+        filter: brightness(130%);
+    }
+}
+
+
+@media (prefers-color-scheme: dark) {
+    .my-btn {
+        background: #505050;
+        color: #F5F5DC;
+    }
+
+    .my-btn.secondary {
+        background: #a9a9a9;
+    }
+
+    .my-btn:hover {
+        background: #6d6d6d;
+    }
+    
+    .my-btn.primary:hover {
+        background: #3b3b3b; 
+    }
+    
+    .my-btn.secondary:hover {
+        background: #888888; 
+    }
+
+    .result {
+        background: #1a1a1a;
+        color: #F5F5DC;
+    }
+
+    #calculator {
+        background: #2b2b2b;
+    }
+
+    #info {
+        color: #F5F5DC;
+        border: 1px solid #444;
+        background-color: #2b2b2b;
+    }
+
+    .btn {
+        background: #a9a9a9;
+        color: #F5F5DC;
+        border: 1px solid #666;
+    }
+
+    .knopka {
+        background: #505050;
+        color: #F5F5DC;
+        border: 1px solid #666;
+    }
+
+    .btn:hover {
+        background: #888888;
+    }
+
+    .knopka:hover {
+        background: #888888;
+    }
+
+    .knopka:active {
+        filter: brightness(130%);
+    }
+}
+
+.my-btn {
+    display: grid;
+    place-items: center;
+    height: 50px;
+    /*border-radius: 50%;*/
+    border: none;  
+    font-size: 1.5rem;
+    font-family: Roboto, sans-serif;
+    font-weight:  100;
+    cursor: pointer;
+    user-select: none;
+}
+
+.my-btn.primary {
+    background: #7b68ee;
+}
+
+.my-btn:active {
+    filter: brightness(130%);
+}
+
+
+.result {
+    margin-bottom: 15px;
+    padding-right: 10px;
+    height: 65px;
+    grid-column: span 4 / span 4;
+    justify-content: end;
+    align-items: center;
+    font-size: 1.5rem;
+    font-family: Roboto, sans-serif;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+}
+
+#calculator {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    width: 240px;
+    margin-top: 20px; 
+    padding: 25px 15px 15px 15px;
+    border-radius: 10px;
+}
+
+
+.knopka {
+    border-radius: 8px;
+    padding: 6px;
+    height: 50px;
+    width: 140px;
+    user-select: none;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.knopka_2 {
+    top: 70px;
+}
+
+.btn:active {
+    filter: brightness(130%);
+}
+
+
+
+.block {
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+body {
+    height: 100%;
+    background-image: url("i.webp");
+    user-select: none;
+}
